@@ -1,14 +1,17 @@
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
+import 'package:cometchat_flutter_sample_app/common/custom_button.dart';
+import 'package:cometchat_flutter_sample_app/home_screen.dart';
 import 'package:cometchat_flutter_sample_app/login_with_uid.dart';
 import 'package:cometchat_flutter_sample_app/sign_up.dart';
 import 'package:cometchat_flutter_sample_app/utils/alert.dart';
 import 'package:cometchat_flutter_sample_app/utils/constants.dart';
 import 'package:cometchat_flutter_sample_app/utils/demo_meta_info_constants.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 
-import 'dashboard.dart';
+// import 'dashboard.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -18,6 +21,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   List<MaterialButtonUserModel> userModelList = [
     MaterialButtonUserModel(
         "superhero1", "SUPERHERO1", "assets/ironman_avatar.png"),
@@ -100,7 +106,7 @@ class _LoginState extends State<Login> {
           Navigator.of(context).pop();
 
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Dashboard()));
+              MaterialPageRoute(builder: (context) => const HomeScreen()));
           return;
         } else {
           await CometChat.logout(
@@ -116,7 +122,7 @@ class _LoginState extends State<Login> {
       Navigator.of(context).pop();
       _user = loggedInUser;
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Dashboard()));
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     }, onError: (CometChatException e) {
       Navigator.of(context).pop();
       debugPrint("Login failed with exception:  ${e.message}");
@@ -163,126 +169,202 @@ class _LoginState extends State<Login> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: (Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset("assets/cometchat_logo.png", height: 100, width: 100),
-              const Text(
-                "CometChat",
-                style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                "Kitchen Sink App",
-                style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Wrap(
-                children: const [
-                  Text(
-                    "Login with one of our sample user",
-                    style: TextStyle(color: Colors.black38),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-
-              //All available user Ids in grid
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
-                childAspectRatio: 3.0,
-                children: List.generate(
-                    userModelList.length,
-                    (index) =>
-                        userSelectionButton(userModelList[index], context)),
-              ),
-              const SizedBox(height: 20),
-
-              Wrap(
-                children: const [
-                  Text(
-                    "or else continue login with",
-                    style: TextStyle(color: Colors.black38),
-                  )
-                ],
-              ),
-
-              const SizedBox(
-                height: 5,
-              ),
-              Center(
-                child: MaterialButton(
-                  color: Colors.blue,
-                  height: 45,
-                  minWidth: 200,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginWithUID()));
-                  },
-                  child: const Text(
-                    "Login using UID",
-                    style: TextStyle(color: Colors.black, fontSize: 14.0),
+  Widget _buildWidget() {
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Enter your email Id',
+                    style: TextStyle(color: Colors.green, fontSize: 18),
+                    // textAlign: TextAlign.center,
                   ),
                 ),
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text('Whatsapp will need to verify your Email Id'),
+                const SizedBox(height: 30),
+                TextFormField(
+                  controller: _emailController,
+                  validator: (value) => _validator(value!, isEmail: true),
+                  decoration: const InputDecoration(
+                      hintText: 'Email Id',
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green))),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _passwordController,
+                  validator: (value) => _validator(value!),
+                  decoration: const InputDecoration(
+                      hintText: 'Password',
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green))),
+                ),
+                const SizedBox(height: 10),
+                CustomBottom(
+                  name: 'Next',
+                  onClick: _onNextClick,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
-              const SizedBox(height: 100),
+  void _onNextClick() {
+    if (_formKey.currentState!.validate()) {
+      auth.FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: _emailController.text, password: _passwordController.text)
+          .then((value) {
+        loginUser(value.user!.uid, context);
+      });
+    }
+  }
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+  String? _validator(String value, {bool isEmail = false}) {
+    if (isEmail && (value.isEmpty)) {
+      return 'Please enter valid email';
+    } else if (value.isEmpty) {
+      return 'please enter valid password';
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildWidget() ??
+        Scaffold(
+          body: SafeArea(
+              child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: (Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("New to cometchat? "),
-                  GestureDetector(
-                      onTap: () {
+                  // Image.asset("assets/cometchat_logo.png", height: 100, width: 100),
+                  const Text(
+                    "CometChat",
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const Text(
+                    "Kitchen Sink App",
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Wrap(
+                    children: const [
+                      Text(
+                        "Login with one of our sample user",
+                        style: TextStyle(color: Colors.black38),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+
+                  //All available user Ids in grid
+                  GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                    childAspectRatio: 3.0,
+                    children: List.generate(
+                        userModelList.length,
+                        (index) =>
+                            userSelectionButton(userModelList[index], context)),
+                  ),
+                  const SizedBox(height: 20),
+
+                  Wrap(
+                    children: const [
+                      Text(
+                        "or else continue login with",
+                        style: TextStyle(color: Colors.black38),
+                      )
+                    ],
+                  ),
+
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Center(
+                    child: MaterialButton(
+                      color: Colors.blue,
+                      height: 45,
+                      minWidth: 200,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignUp()));
+                                builder: (context) => const LoginWithUID()));
                       },
-                      child: const Text("CREATE NEW",
-                          style: TextStyle(
-                              //decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.blue)))
-                ],
-              ),
+                      child: const Text(
+                        "Login using UID",
+                        style: TextStyle(color: Colors.black, fontSize: 14.0),
+                      ),
+                    ),
+                  ),
 
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("© 2022 CometChat inc."),
-                )
-              ])
-            ],
+                  const SizedBox(height: 100),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("New to cometchat? "),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUp()));
+                          },
+                          child: const Text("CREATE NEW",
+                              style: TextStyle(
+                                  //decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.blue)))
+                    ],
+                  ),
+
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("© 2022 CometChat inc."),
+                        )
+                      ])
+                ],
+              )),
+            ),
           )),
-        ),
-      )),
-    );
+        );
   }
 }
 
