@@ -14,10 +14,10 @@ class CustomBottom extends StatelessWidget {
         onPressed: onClick,
         child: Text(
           name,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.white),
         ),
         style: TextButton.styleFrom(
-            backgroundColor: CustomColors.nextButtonColor,
+            backgroundColor: CustomColors.primaryColor,
             minimumSize: const Size(69, 28),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5))));

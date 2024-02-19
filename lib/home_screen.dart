@@ -1,6 +1,7 @@
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart' as user;
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
+import 'package:cometchat_flutter_sample_app/login.dart';
 import 'package:cometchat_flutter_sample_app/utils/custom_colors.dart';
 import 'package:cometchat_flutter_sample_app/utils/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             automaticallyImplyLeading: false,
             titleSpacing: 15,
             centerTitle: false,
-            backgroundColor: CustomColors.whatsappColor,
+            backgroundColor: CustomColors.primaryColor,
             title: Text(
               Strings.appName,
               style: GoogleFonts.roboto(

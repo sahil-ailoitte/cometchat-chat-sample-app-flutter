@@ -6,4 +6,5 @@ class CustomColors {
   static const Color mikeColor = Color(0xFF02A884);
   static const Color nextButtonColor = Color(0xFF00A884);
   static const Color textMessageColor = Color(0xFF8798A0);
+  static const Color primaryColor = Color(0xFF212069);
 }

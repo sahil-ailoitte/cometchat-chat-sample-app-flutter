@@ -4,6 +4,8 @@ import 'package:cometchat_flutter_sample_app/home_screen.dart';
 import 'package:cometchat_flutter_sample_app/login_with_uid.dart';
 import 'package:cometchat_flutter_sample_app/sign_up.dart';
 import 'package:cometchat_flutter_sample_app/utils/alert.dart';
+import 'package:cometchat_flutter_sample_app/utils/custom_colors.dart';
+
 // import 'package:cometchat_flutter_sample_app/utils/constants.dart';
 // import 'package:cometchat_flutter_sample_app/utils/demo_meta_info_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -203,27 +205,19 @@ class _LoginState extends State<Login> {
                 TextFormField(
                   controller: _emailController,
                   validator: (value) => _validator(value!, isEmail: true),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Email Id',
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                      )),
+                      enabledBorder: _getBorder,
+                      focusedBorder: _getBorder),
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
                   controller: _passwordController,
                   validator: (value) => _validator(value!),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Password',
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                      )),
+                      enabledBorder: _getBorder,
+                      focusedBorder: _getBorder),
                 ),
                 const SizedBox(height: 10),
                 const Spacer(
@@ -239,6 +233,12 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+    );
+  }
+
+  InputBorder get _getBorder {
+    return const UnderlineInputBorder(
+      borderSide: BorderSide(color: CustomColors.primaryColor),
     );
   }
 
