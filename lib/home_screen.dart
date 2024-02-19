@@ -1,14 +1,15 @@
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart' as user;
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
-import 'package:cometchat_flutter_sample_app/groups_dashboard.dart';
-import 'package:cometchat_flutter_sample_app/groups_with_messages/groups_with_mesages_module.dart';
 import 'package:cometchat_flutter_sample_app/utils/custom_colors.dart';
 import 'package:cometchat_flutter_sample_app/utils/strings.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final bool hasLogin;
+
+  const HomeScreen({this.hasLogin = false, Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,7 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void didChangeDependencies() {
-    // loginUser('SUPERHERO1', context);
+    if (widget.hasLogin) {
+      loginUser(auth.FirebaseAuth.instance.currentUser!.uid ?? '', context);
+    }
+
     super.didChangeDependencies();
   }
 
@@ -31,10 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       if (_user != null) {
         if (_user.uid == userId) {
-          // Navigator.of(context).pop();
-
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => const Dashboard()));
           return;
         } else {
           await user.CometChat.logout(
@@ -47,12 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
     await CometChatUIKit.login(userId, onSuccess: (user.User loggedInUser) {
       debugPrint("Login Successful from UI : $loggedInUser");
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
       _user = loggedInUser;
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => const Dashboard()));
     }, onError: (CometChatException e) {
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
       debugPrint("Login failed with exception:  ${e.message}");
     });
 
@@ -75,109 +73,110 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 3,
       child: SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              // leading: const SizedBox.shrink(),
-              titleSpacing: 0.0,
-              centerTitle: false,
-              backgroundColor: CustomColors.whatsappColor,
-              title: const Text(
-                Strings.appName,
-                style: TextStyle(color: Colors.white),
-              ),
-              bottom: const TabBar(
-                indicatorColor: Colors.white,
-                indicatorSize: TabBarIndicatorSize.tab,
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.white,
-                tabs: [
-                  Tab(
-                    text: 'Chats',
-                  ),
-                  Tab(
-                    text: 'Calls',
-                  ),
-                  Tab(
-                    text: 'Groups',
-                  )
-                ],
-              ),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            // leading: const SizedBox.shrink(),
+            titleSpacing: 0.0,
+            centerTitle: false,
+            backgroundColor: CustomColors.whatsappColor,
+            title: const Text(
+              Strings.appName,
+              style: TextStyle(color: Colors.white),
             ),
-            body: TabBarView(
-              children: [
-                CometChatUsersWithMessages(
-                  usersConfiguration: const UsersConfiguration(
-                      hideAppbar: true,
-                      hideSearch: true,
-                      hideSeparator: true,
-                      showBackButton: false,
-                      title: 'Test',
-                      hideSectionSeparator: true,),
-                  messageConfiguration: MessageConfiguration(
-                      // messageComposerConfiguration:
-                      //     MessageComposerConfiguration(
-                      //         placeholderText: 'Message')
-                      messageComposerView:
-                          (User? user, Group? group, BuildContext context) {
-                    return SizedBox(
-                      height: 60,
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 23),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      child: TextField(
-                                    controller: _messageController,
-                                    decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Message',
-                                        hintStyle: TextStyle(
-                                            color:
-                                                CustomColors.textMessageColor)),
-                                  )),
-                                  const Icon(Icons.image),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 14,
-                          ),
-                          InkWell(
-                            onTap: _onMessageSend,
-                            child: const CircleAvatar(
-                              radius: 25,
-                              backgroundColor: CustomColors.mikeColor,
-                              child: Icon(
-                                Icons.send,
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  }),
+            bottom: const TabBar(
+              indicatorColor: Colors.white,
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
+              tabs: [
+                Tab(
+                  text: 'Chats',
                 ),
-                CometChatCallLogs(
-                  title: '',
-                  callLogsStyle:
-                      CallLogsStyle(titleStyle: const TextStyle(height: 0)),
-                  showBackButton: false,
+                Tab(
+                  text: 'Calls',
                 ),
-                const CometChatGroupsWithMessages(),
+                Tab(
+                  text: 'Groups',
+                )
               ],
-            ),),
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              CometChatUsersWithMessages(
+                usersConfiguration: const UsersConfiguration(
+                  hideAppbar: true,
+                  hideSearch: true,
+                  hideSeparator: true,
+                  showBackButton: false,
+                  title: 'Test',
+                  hideSectionSeparator: true,
+                ),
+                messageConfiguration: MessageConfiguration(
+                    // messageComposerConfiguration:
+                    //     MessageComposerConfiguration(
+                    //         placeholderText: 'Message')
+                    messageComposerView:
+                        (User? user, Group? group, BuildContext context) {
+                  return SizedBox(
+                    height: 60,
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 23),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: TextField(
+                                  controller: _messageController,
+                                  decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Message',
+                                      hintStyle: TextStyle(
+                                          color:
+                                              CustomColors.textMessageColor)),
+                                )),
+                                const Icon(Icons.image),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 14,
+                        ),
+                        InkWell(
+                          onTap: _onMessageSend,
+                          child: const CircleAvatar(
+                            radius: 25,
+                            backgroundColor: CustomColors.mikeColor,
+                            child: Icon(
+                              Icons.send,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+              ),
+              CometChatCallLogs(
+                title: '',
+                callLogsStyle:
+                    CallLogsStyle(titleStyle: const TextStyle(height: 0)),
+                showBackButton: false,
+              ),
+              const CometChatGroupsWithMessages(),
+            ],
+          ),
+        ),
       ),
     );
   }
