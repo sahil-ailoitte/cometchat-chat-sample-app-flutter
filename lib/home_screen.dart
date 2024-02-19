@@ -1,6 +1,8 @@
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart' as user;
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
+import 'package:cometchat_flutter_sample_app/groups_dashboard.dart';
+import 'package:cometchat_flutter_sample_app/groups_with_messages/groups_with_mesages_module.dart';
 import 'package:cometchat_flutter_sample_app/utils/custom_colors.dart';
 import 'package:cometchat_flutter_sample_app/utils/strings.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -90,10 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 unselectedLabelColor: Colors.white,
                 tabs: [
                   Tab(
-                    text: 'CALLS',
+                    text: 'Chats',
                   ),
                   Tab(
-                    text: 'CALLS',
+                    text: 'Calls',
+                  ),
+                  Tab(
+                    text: 'Groups',
                   )
                 ],
               ),
@@ -101,13 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
             body: TabBarView(
               children: [
                 CometChatUsersWithMessages(
-                  usersConfiguration: UsersConfiguration(
+                  usersConfiguration: const UsersConfiguration(
                       hideAppbar: true,
                       hideSearch: true,
                       hideSeparator: true,
                       showBackButton: false,
-                      title: '',
-                      hideSectionSeparator: true),
+                      title: 'Test',
+                      hideSectionSeparator: true,),
                   messageConfiguration: MessageConfiguration(
                       // messageComposerConfiguration:
                       //     MessageComposerConfiguration(
@@ -167,11 +172,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 CometChatCallLogs(
                   title: '',
                   callLogsStyle:
-                      CallLogsStyle(titleStyle: TextStyle(height: 0)),
+                      CallLogsStyle(titleStyle: const TextStyle(height: 0)),
                   showBackButton: false,
-                )
+                ),
+                const CometChatGroupsWithMessages(),
               ],
-            )),
+            ),),
       ),
     );
   }
