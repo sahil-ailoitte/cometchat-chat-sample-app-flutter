@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     CallLogsStyle(titleStyle: const TextStyle(height: 0)),
                 showBackButton: false,
               ),
-              const CometChatGroupsWithMessages(groupsConfiguration: GroupsConfiguration(hideSearch: true) ,),
+              const CometChatGroupsWithMessages(),
             ],
           ),
         ),
