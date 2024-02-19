@@ -4,10 +4,10 @@ import 'package:cometchat_flutter_sample_app/home_screen.dart';
 import 'package:cometchat_flutter_sample_app/login_with_uid.dart';
 import 'package:cometchat_flutter_sample_app/sign_up.dart';
 import 'package:cometchat_flutter_sample_app/utils/alert.dart';
-import 'package:cometchat_flutter_sample_app/utils/constants.dart';
-import 'package:cometchat_flutter_sample_app/utils/demo_meta_info_constants.dart';
+// import 'package:cometchat_flutter_sample_app/utils/constants.dart';
+// import 'package:cometchat_flutter_sample_app/utils/demo_meta_info_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 
@@ -173,23 +173,26 @@ class _LoginState extends State<Login> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 36),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
+                const SizedBox(
+                  height: 91,
+                ),
                 const Align(
                   alignment: Alignment.center,
                   child: Text(
                     'Enter your email Id',
-                    style: TextStyle(color: Colors.green, fontSize: 18),
+                    style: TextStyle(color: Colors.black, fontSize: 18),
                     // textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text('Whatsapp will need to verify your Email Id'),
+                const Text('Sheikhani Communication will need to verify your Email Id'),
                 const SizedBox(height: 30),
                 TextFormField(
                   controller: _emailController,
@@ -209,10 +212,14 @@ class _LoginState extends State<Login> {
                           borderSide: BorderSide(color: Colors.green))),
                 ),
                 const SizedBox(height: 10),
+                const Spacer(
+                  flex: 3,
+                ),
                 CustomBottom(
                   name: 'Next',
                   onClick: _onNextClick,
-                )
+                ),
+                const Spacer(),
               ],
             ),
           ),
