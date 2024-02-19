@@ -1,3 +1,4 @@
+import 'package:cometchat_flutter_sample_app/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottom extends StatelessWidget {
@@ -13,11 +14,11 @@ class CustomBottom extends StatelessWidget {
         onPressed: onClick,
         child: Text(
           name,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.black),
         ),
         style: TextButton.styleFrom(
-            backgroundColor: Colors.green,
-            minimumSize: const Size(40, 30),
+            backgroundColor: CustomColors.nextButtonColor,
+            minimumSize: const Size(69, 28),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5))));
   }
