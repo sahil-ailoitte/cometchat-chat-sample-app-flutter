@@ -105,6 +105,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
+            actions: [
+              PopupMenuButton(
+                iconColor: Colors.white,
+                offset: const Offset(-10, 40),
+                itemBuilder: (_) {
+                  return [
+                    PopupMenuItem(
+                        height: 30,
+                        onTap: _onLogout,
+                        child: const SizedBox(
+                          width: 100,
+                          child: Text('Logout'),
+                        ))
+                  ];
+                },
+                constraints: const BoxConstraints(maxHeight: 50),
+              ),
+              const SizedBox(width: 10)
+            ],
           ),
           body: TabBarView(
             children: [
@@ -188,6 +207,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  void _onLogout() {
+    auth.FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+      return const Login();
+    }));
   }
 
   void _onMessageSend() {
