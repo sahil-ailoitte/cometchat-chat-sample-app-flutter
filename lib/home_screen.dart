@@ -5,6 +5,7 @@ import 'package:cometchat_flutter_sample_app/utils/custom_colors.dart';
 import 'package:cometchat_flutter_sample_app/utils/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   final bool hasLogin;
@@ -75,20 +76,23 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            // leading: const SizedBox.shrink(),
-            titleSpacing: 10,
+            titleSpacing: 15,
             centerTitle: false,
             backgroundColor: CustomColors.whatsappColor,
-            title: const Text(
+            title: Text(
               Strings.appName,
-              style: TextStyle(color: Colors.white),
+              style: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             ),
-            bottom: const TabBar(
+            bottom: TabBar(
               indicatorColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: Colors.white,
+              labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold),
               unselectedLabelColor: Colors.white,
-              tabs: [
+              tabs: const [
                 Tab(
                   text: 'Chats',
                 ),
@@ -107,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 usersConfiguration: UsersConfiguration(
                   hideAppbar: true,
                   hideSearch: true,
-                  hideSeparator: true,
+                  hideSeparator: false,
                   showBackButton: false,
                   title: 'Test',
                   hideSectionSeparator: true,
@@ -175,7 +179,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     CallLogsStyle(titleStyle: const TextStyle(height: 0)),
                 showBackButton: false,
               ),
-              const CometChatGroupsWithMessages(),
+              const CometChatGroupsWithMessages(
+                groupsConfiguration: GroupsConfiguration(hideSearch: true),
+              ),
             ],
           ),
         ),

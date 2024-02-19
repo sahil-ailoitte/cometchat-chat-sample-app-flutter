@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 // import 'dashboard.dart';
 
 class Login extends StatefulWidget {
@@ -181,18 +181,24 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   height: 91,
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.center,
                   child: Text(
                     'Enter your email Id',
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: GoogleFonts.roboto(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
                     // textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text('Sheikhani Communication will need to verify your Email Id'),
+                Text(
+                    'Sheikhani Communication will need to verify your Email Id',
+                style: GoogleFonts.roboto(),
+                ),
                 const SizedBox(height: 30),
                 TextFormField(
                   controller: _emailController,
@@ -200,7 +206,11 @@ class _LoginState extends State<Login> {
                   decoration: const InputDecoration(
                       hintText: 'Email Id',
                       enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.green))),
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      )),
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
@@ -209,7 +219,11 @@ class _LoginState extends State<Login> {
                   decoration: const InputDecoration(
                       hintText: 'Password',
                       enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.green))),
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      )),
                 ),
                 const SizedBox(height: 10),
                 const Spacer(
