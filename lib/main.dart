@@ -70,9 +70,15 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xffeeeeee),
         primarySwatch: Colors.blue,
       ),
-      home: Login(
-        key: CallNavigationContext.navigatorKey,
-      ),
+      home: _hasLogin
+          ? const HomeScreen(hasLogin: true)
+          : Login(
+              key: CallNavigationContext.navigatorKey,
+            ),
     );
+  }
+
+  bool get _hasLogin {
+    return FirebaseAuth.instance.currentUser != null;
   }
 }
