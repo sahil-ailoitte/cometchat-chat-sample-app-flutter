@@ -1,0 +1,63 @@
+///[AssetConstants] is a utility class that stores String constants of asset image paths
+class AssetConstants {
+  static const spinner = "assets/icons/spinner.png";
+  static const close = "assets/icons/close.png";
+  static const write = "assets/icons/write.png";
+  static const checkmark = "assets/icons/checkmark.png";
+  static const delete = "assets/icons/delete.png";
+  static const messageReceived = "assets/icons/message_received.png";
+  static const messageSent = "assets/icons/message_sent.png";
+  static const info = "assets/icons/info.png";
+  static const imagePlaceholder = "assets/icons/image_placeholder.png";
+  static const messagesUnsafe = "assets/icons/messages_unsafe.png";
+  static const download = "assets/icons/download.png";
+  static const pause = "assets/icons/pause.png";
+  static const play = "assets/icons/play.png";
+  static const back = "assets/icons/back.png";
+  static const add = "assets/icons/add.png";
+  static const send = "assets/icons/send.png";
+  static const heart = "assets/icons/heart.png";
+  static const smileys = "assets/icons/smileys.png";
+  static const photoLibrary = "assets/icons/photo_library.png";
+  static const attachmentFile = "assets/icons/attachment_file.png";
+  static const audio = "assets/icons/audio.png";
+  static const stop = "assets/icons/stop.png";
+  static const edit = "assets/icons/edit.png";
+  static const reply = "assets/icons/reply.png";
+  static const thread = "assets/icons/thread.png";
+  static const share = "assets/icons/share.png";
+  static const copy = "assets/icons/copy.png";
+  static const forward = "assets/icons/forward.png";
+  static const keyboard = "assets/icons/keyboard.png";
+  static const smile = "assets/icons/smile.png";
+  static const warning = "assets/icons/warning.png";
+  static const translate = "assets/icons/translate.png";
+  static const polls = "assets/icons/polls.png";
+  static const collaborativeWhiteboard =
+      "assets/icons/collaborative_whiteboard.png";
+  static const collaborativeDocument =
+      "assets/icons/collaborative_document.png";
+  static const reactionsAdd = "assets/icons/reactions_add.png";
+  static const videoCall = "assets/icons/2x/video-call.png";
+  static const audioCall = "assets/icons/2x/audio-call.png";
+  static const call = "assets/icons/2x/call.png";
+  static const compose = "assets/icons/compose.png";
+  static const replyPrivately = "assets/icons/2x/reply_message_privately.png";
+  static const microphone = "assets/icons/microphone.png";
+  static const stopPlayer = "assets/icons/stop-player.png";
+  static const ai = "assets/icons/ai.png";
+  static const repliesError = "assets/icons/replies_error.png";
+  static const repliesEmpty = "assets/icons/replies_empty.png";
+  static const incomingCall = "assets/icons/incoming_call.png";
+  static const outgoingCall = "assets/icons/outgoing_call.png";
+  static const missedCall = "assets/icons/missed_call.png";
+  static const message = "assets/icons/message.png";
+  static const sideArrow = "assets/icons/side_arrow.png";
+  static const audioIncoming = "assets/icons/audio_incoming.png";
+  static const audioOutgoing = "assets/icons/audio_outgoing.png";
+  static const audioMissed = "assets/icons/audio_missed.png";
+  static const videoIncoming = "assets/icons/video_incoming.png";
+  static const videoOutgoing = "assets/icons/video_outgoing.png";
+  static const videoMissed = "assets/icons/video_missed.png";
+  static const slotsUnavailable =  "assets/icons/2x/slots-unavailable.png";
+}

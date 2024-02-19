@@ -103,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: TabBarView(
             children: [
-              CometChatUsersWithMessages(
-                usersConfiguration: const UsersConfiguration(
+              const CometChatUsersWithMessages(
+                usersConfiguration: UsersConfiguration(
                   hideAppbar: true,
                   hideSearch: true,
                   hideSeparator: true,
@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     CallLogsStyle(titleStyle: const TextStyle(height: 0)),
                 showBackButton: false,
               ),
-              const CometChatGroupsWithMessages(),
+              const CometChatGroupsWithMessages(groupsConfiguration: GroupsConfiguration(hideSearch: true) ,),
             ],
           ),
         ),

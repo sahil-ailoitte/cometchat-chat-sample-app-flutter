@@ -200,6 +200,7 @@ class _CometChatCallLogsState extends State<CometChatCallLogs> {
                   Navigator.of(context).pop();
                 },
             style: ListBaseStyle(
+              padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 15),
               background: (widget.callLogsStyle?.gradient == null)
                   ? widget.callLogsStyle?.background
                   : Colors.transparent,
