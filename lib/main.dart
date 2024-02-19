@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CometChat sample app',
+      title: 'Sheikhani Communication',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xffeeeeee),

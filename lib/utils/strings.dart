@@ -1,3 +1,3 @@
 class Strings {
-  static const String appName = 'WhatsApp';
+  static const String appName = 'Sheikhani Communication';
 }
