@@ -53,47 +53,47 @@ class _LoginState extends State<Login> {
     //   debugPrint("Initialization failed with exception: ${excep.message}");
     // });
 
-    makeUISettings();
+    // makeUISettings();
 
     //initialization end
   }
 
-  makeUISettings() {
-    UIKitSettings uiKitSettings = (UIKitSettingsBuilder()
-          ..subscriptionType = CometChatSubscriptionType.allUsers
-          ..region = CometChatConstants.region
-          ..autoEstablishSocketConnection = true
-          ..appId = CometChatConstants.appId
-          ..authKey = CometChatConstants.authKey
-          ..callingExtension = CometChatCallingExtension()
-          ..extensions = CometChatUIKitChatExtensions.getDefaultExtensions()
-          ..aiFeature = [
-            AISmartRepliesExtension(),
-            AIConversationStarterExtension(),
-            AIAssistBotExtension(),
-            AIConversationSummaryExtension()
-          ])
-        .build();
-
-    CometChatUIKit.init(
-      uiKitSettings: uiKitSettings,
-      onSuccess: (successMessage) {
-        try {
-          CometChat.setDemoMetaInfo(jsonObject: {
-            "name": DemoMetaInfoConstants.name,
-            "type": DemoMetaInfoConstants.type,
-            "version": DemoMetaInfoConstants.version,
-            "bundle": DemoMetaInfoConstants.bundle,
-            "platform": DemoMetaInfoConstants.platform,
-          });
-        } catch (e) {
-          if (kDebugMode) {
-            debugPrint("setDemoMetaInfo ended with error");
-          }
-        }
-      },
-    );
-  }
+  // makeUISettings() {
+  //   UIKitSettings uiKitSettings = (UIKitSettingsBuilder()
+  //         ..subscriptionType = CometChatSubscriptionType.allUsers
+  //         ..region = CometChatConstants.region
+  //         ..autoEstablishSocketConnection = true
+  //         ..appId = CometChatConstants.appId
+  //         ..authKey = CometChatConstants.authKey
+  //         ..callingExtension = CometChatCallingExtension()
+  //         ..extensions = CometChatUIKitChatExtensions.getDefaultExtensions()
+  //         ..aiFeature = [
+  //           AISmartRepliesExtension(),
+  //           AIConversationStarterExtension(),
+  //           AIAssistBotExtension(),
+  //           AIConversationSummaryExtension()
+  //         ])
+  //       .build();
+  //
+  //   CometChatUIKit.init(
+  //     uiKitSettings: uiKitSettings,
+  //     onSuccess: (successMessage) {
+  //       try {
+  //         CometChat.setDemoMetaInfo(jsonObject: {
+  //           "name": DemoMetaInfoConstants.name,
+  //           "type": DemoMetaInfoConstants.type,
+  //           "version": DemoMetaInfoConstants.version,
+  //           "bundle": DemoMetaInfoConstants.bundle,
+  //           "platform": DemoMetaInfoConstants.platform,
+  //         });
+  //       } catch (e) {
+  //         if (kDebugMode) {
+  //           debugPrint("setDemoMetaInfo ended with error");
+  //         }
+  //       }
+  //     },
+  //   );
+  // }
 
   //Login User function must pass userid and authkey should be used only while developing
   loginUser(String userId, BuildContext context) async {
