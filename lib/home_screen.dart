@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             // leading: const SizedBox.shrink(),
-            titleSpacing: 0.0,
+            titleSpacing: 10,
             centerTitle: false,
             backgroundColor: CustomColors.whatsappColor,
             title: const Text(
@@ -116,56 +116,58 @@ class _HomeScreenState extends State<HomeScreen> {
                     // messageComposerConfiguration:
                     //     MessageComposerConfiguration(
                     //         placeholderText: 'Message')
-                    messageComposerView:
-                        (User? user, Group? group, BuildContext context) {
-                  return SizedBox(
-                    height: 60,
-                    child: Row(
-                      children: [
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 23),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(25)),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: TextField(
-                                  controller: _messageController,
-                                  decoration: const InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Message',
-                                      hintStyle: TextStyle(
-                                          color:
-                                              CustomColors.textMessageColor)),
-                                )),
-                                const Icon(Icons.image),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 14,
-                        ),
-                        InkWell(
-                          onTap: _onMessageSend,
-                          child: const CircleAvatar(
-                            radius: 25,
-                            backgroundColor: CustomColors.mikeColor,
-                            child: Icon(
-                              Icons.send,
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
-                      ],
+                    // messageComposerView:
+                    //     (User? user, Group? group, BuildContext context) {
+                    //   return SizedBox(
+                    //     height: 60,
+                    //     child: Row(
+                    //       children: [
+                    //         const SizedBox(
+                    //           width: 12,
+                    //         ),
+                    //         Expanded(
+                    //           child: Container(
+                    //             padding:
+                    //                 const EdgeInsets.symmetric(horizontal: 23),
+                    //             decoration: BoxDecoration(
+                    //                 color: Colors.white,
+                    //                 borderRadius: BorderRadius.circular(25)),
+                    //             child: Row(
+                    //               children: [
+                    //                 Expanded(
+                    //                     child: TextField(
+                    //                   controller: _messageController,
+                    //                   decoration: const InputDecoration(
+                    //                       border: InputBorder.none,
+                    //                       hintText: 'Message',
+                    //                       hintStyle: TextStyle(
+                    //                           color:
+                    //                               CustomColors.textMessageColor)),
+                    //                 )),
+                    //                 const Icon(Icons.image),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         const SizedBox(
+                    //           width: 14,
+                    //         ),
+                    //         InkWell(
+                    //           onTap: _onMessageSend,
+                    //           child: const CircleAvatar(
+                    //             radius: 25,
+                    //             backgroundColor: CustomColors.mikeColor,
+                    //             child: Icon(
+                    //               Icons.send,
+                    //               color: Colors.white,
+                    //             ),
+                    //           ),
+                    //         )
+                    //       ],
+                    //     ),
+                    //   );
+                    // },
                     ),
-                  );
-                }),
               ),
               CometChatCallLogs(
                 title: '',
