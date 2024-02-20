@@ -1,9 +1,11 @@
 import 'dart:io';
 
 class DemoMetaInfoConstants {
-  static String name =  "cometchat_flutter_sample_app";
-  static String type =  "sample-app";
-  static String version =  "1.0.5";
-  static String bundle =  Platform.isAndroid ? "com.cometchat.cometchat_flutter_sample_app" : "com.cometchat.cometchatFlutterSampleApp";
-  static String platform =  "Flutter";
+  static String name = "Sheikhani Communication";
+  static String type = "Demo-App";
+  static String version = "2.7.0";
+  static String bundle = Platform.isAndroid
+      ? "com.sheikhani.communication"
+      : "com.sheikhani.communication";
+  static String platform = "Flutter";
 }
