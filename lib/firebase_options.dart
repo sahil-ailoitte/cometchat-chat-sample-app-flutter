@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDyoxfHIsIIgqldbst7hKUGo2BkeYpnJuw',
-    appId: '1:612231640845:android:4d01712bb6324062686244',
+    appId: '1:612231640845:android:1b2c6e9402885645686244',
     messagingSenderId: '612231640845',
     projectId: 'chat-app-84c2c',
     databaseURL: 'https://chat-app-84c2c-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -60,11 +60,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB3F6Nq9Uj9lXCAVwZPCxMdYtRiaUtGVcg',
-    appId: '1:612231640845:ios:725364a33186616a686244',
+    appId: '1:612231640845:ios:49d1e2822164e218686244',
     messagingSenderId: '612231640845',
     projectId: 'chat-app-84c2c',
     databaseURL: 'https://chat-app-84c2c-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-app-84c2c.appspot.com',
-    iosBundleId: 'com.cometchat.cometchatFlutterSampleApp',
+    iosBundleId: 'com.sheikhani.communication',
   );
 }
