@@ -133,13 +133,15 @@ class CometChatCallButtons extends StatelessWidget {
                       iconPackage:
                           voiceCallIconPackage ?? UIConstants.packageName,
                       onTap: (context) {
-                        if (!viewModel.disabled) {
+                        //todo done know why they added this check (!viewModel.disabled)
+                        //todo add camera and microphone permission here
+                        // if (!viewModel.disabled) {
                           if (onVoiceCallClick != null) {
                             onVoiceCallClick!(context, user, group);
                           } else {
                             viewModel.initiateCall(CallTypeConstants.audioCall);
                           }
-                        }
+                        // }
                       },
                       buttonStyle: kit.ButtonStyle(
                         background: callButtonsStyle?.background,
