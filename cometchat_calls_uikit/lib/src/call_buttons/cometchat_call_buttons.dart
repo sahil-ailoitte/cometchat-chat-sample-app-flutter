@@ -151,10 +151,10 @@ class CometChatCallButtons extends StatelessWidget {
                         width: callButtonsStyle?.width,
                       ),
                     ),
-                  if (hideVideoCall != true)
-                    const SizedBox(
-                      width: 20,
-                    ),
+                  // if (hideVideoCall != true)
+                  //   const SizedBox(
+                  //     width: 20,
+                  //   ),
                   if (hideVideoCall != true)
                     CometChatButton(
                       text: videoCallIconText,
