@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cometchat_calls_sdk: ^4.0.2
-  cometchat_sdk: ^4.0.4
+  cometchat_calls_sdk: ^4.0.3
+  cometchat_sdk: ^4.0.6
   cometchat_uikit_shared:
     path: ../cometchat_uikit_shared
   intl: any
