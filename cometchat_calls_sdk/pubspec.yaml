@@ -1,0 +1,29 @@
+name: cometchat_calls_sdk
+description: CometChat Calling Flutter Plugin.
+version: 4.0.3
+homepage: https://www.cometchat.com/
+
+environment:
+  sdk: '>=2.16.2 <4.0.0'
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.4
+  http: ^0.13.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+
+# The following section is specific to Flutter packages.
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.cometchatcalls.cometchatcalls_plugin
+        pluginClass: CometChatCallsPlugin
+      ios:
+        pluginClass: CometChatCallsPlugin
