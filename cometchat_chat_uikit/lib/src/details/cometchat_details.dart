@@ -219,7 +219,16 @@ class CometChatDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.close,
+                color: Colors.grey,
+              )),
           if (hideProfile != true)
             customProfileView ??
                 _getProfile(context, detailsController, _theme),

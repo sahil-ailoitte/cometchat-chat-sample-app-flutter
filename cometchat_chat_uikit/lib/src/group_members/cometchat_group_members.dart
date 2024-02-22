@@ -508,6 +508,7 @@ class CometChatGroupMembers extends StatelessWidget {
         hideSearch: hideSearch,
         backIcon: backButton,
         onBack: onBack,
+        showCrossButton: true,
         placeholder: searchPlaceholder,
         showBackButton: showBackButton,
         searchBoxIcon: searchBoxIcon,

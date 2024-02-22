@@ -12,24 +12,24 @@ import 'package:cometchat_uikit_shared/cometchat_uikit_shared.dart';
 /// ```
 class CometChatListBase extends StatelessWidget {
   /// Creates a widget that that gives CometChat ListBase UI
-  const CometChatListBase(
-      {Key? key,
-      this.style = const ListBaseStyle(),
-      this.backIcon,
-      required this.title,
-      this.hideSearch = false,
-      this.searchBoxIcon,
-      required this.container,
-      this.showBackButton = false,
-      this.onSearch,
-      this.menuOptions,
-      this.placeholder,
-      this.searchText,
-      this.theme,
-      this.onBack,
-      this.hideAppBar = false
-      })
-      : super(key: key);
+  const CometChatListBase({
+    Key? key,
+    this.style = const ListBaseStyle(),
+    this.backIcon,
+    required this.title,
+    this.hideSearch = false,
+    this.searchBoxIcon,
+    required this.container,
+    this.showBackButton = false,
+    this.onSearch,
+    this.menuOptions,
+    this.placeholder,
+    this.searchText,
+    this.theme,
+    this.onBack,
+    this.hideAppBar = false,
+    this.showCrossButton = false,
+  }) : super(key: key);
 
   ///[style] styling properties
   final ListBaseStyle style;
@@ -72,8 +72,7 @@ class CometChatListBase extends StatelessWidget {
 
   ///[theme] to specify custom theme
   final bool? hideAppBar;
-
-
+  final bool showCrossButton;
 
   /// returns back button to be shown in appbar
   Widget? getBackButton(context, CometChatTheme _theme) {
@@ -132,8 +131,8 @@ class CometChatListBase extends StatelessWidget {
               ? Colors.transparent
               : style.background ?? _theme.palette.getBackground(),
           body: Padding(
-            padding:
-                style.padding ?? const EdgeInsets.only(left: 16, right: 16),
+            padding: style.padding ??
+                const EdgeInsets.only(left: 16, right: 16, top: 15),
             child: SizedBox(
               height: style.height,
               width: style.width,
@@ -141,6 +140,16 @@ class CometChatListBase extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (showCrossButton) ...[
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(
+                        Icons.close,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 10)
+                  ],
                   //-----------------------------------
                   //----------show search box----------
                   if (hideSearch == false)
