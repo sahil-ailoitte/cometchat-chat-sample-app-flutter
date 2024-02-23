@@ -107,8 +107,7 @@ class _LoginState extends State<Login> {
         if (_user.uid == userId) {
           Navigator.of(context).pop();
 
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()));
+          _navigateToHomeScreen();
           return;
         } else {
           await CometChat.logout(
@@ -123,8 +122,7 @@ class _LoginState extends State<Login> {
       debugPrint("Login Successful from UI : $loggedInUser");
       Navigator.of(context).pop();
       _user = loggedInUser;
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      _navigateToHomeScreen();
     }, onError: (CometChatException e) {
       Navigator.of(context).pop();
       debugPrint("Login failed with exception:  ${e.message}");
@@ -141,6 +139,14 @@ class _LoginState extends State<Login> {
     //   Navigator.of(context).pop();
     //   debugPrint("Login failed with exception:  ${e.message}");
     // });
+  }
+
+  void _navigateToHomeScreen() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                HomeScreen(key: CallNavigationContext.navigatorKey)));
   }
 
   Widget userSelectionButton(

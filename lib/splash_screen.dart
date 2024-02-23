@@ -27,9 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
       return _hasLogin
           ? HomeScreen(hasLogin: true, key: CallNavigationContext.navigatorKey)
-          : Login(
-              key: CallNavigationContext.navigatorKey,
-            );
+          : const Login();
     }));
   }
 
