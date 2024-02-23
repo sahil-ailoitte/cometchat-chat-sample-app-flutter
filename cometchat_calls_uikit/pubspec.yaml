@@ -14,7 +14,8 @@ dependencies:
 
   cometchat_calls_sdk:
     path: ../cometchat_calls_sdk
-  cometchat_sdk: ^4.0.6
+  cometchat_sdk:
+    path: ../cometchat_sdk
   cometchat_uikit_shared:
     path: ../cometchat_uikit_shared
   intl: any

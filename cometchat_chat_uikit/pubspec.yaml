@@ -21,7 +21,8 @@ dependencies:
   path_provider: ^2.0.9
   webview_flutter: ^4.2.2
   get: ^4.6.5
-  cometchat_sdk: ^4.0.6
+  cometchat_sdk:
+    path: ../cometchat_sdk
   url_launcher: ^6.0.20
 
 

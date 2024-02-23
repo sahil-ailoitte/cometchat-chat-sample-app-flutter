@@ -106,82 +106,80 @@ class CometChatOutgoingCall extends StatelessWidget {
         );
         return false;
       },
-      child: SafeArea(
-        child: Scaffold(
-            body: Container(
-              height: outgoingCallStyle?.height ?? double.infinity,
-              width: outgoingCallStyle?.width ?? double.infinity,
-              decoration: BoxDecoration(
-                gradient: outgoingCallStyle?.gradient,
-                color: outgoingCallStyle?.background ??  _theme.palette.getBackground() ,
-                border: outgoingCallStyle?.border,
-                borderRadius: BorderRadius.circular(outgoingCallStyle?.borderRadius ?? 0),
+      child: Scaffold(
+          body: Container(
+            height: outgoingCallStyle?.height ?? double.infinity,
+            width: outgoingCallStyle?.width ?? double.infinity,
+            decoration: BoxDecoration(
+              gradient: outgoingCallStyle?.gradient,
+              color: outgoingCallStyle?.background ??  _theme.palette.getBackground() ,
+              border: outgoingCallStyle?.border,
+              borderRadius: BorderRadius.circular(outgoingCallStyle?.borderRadius ?? 0),
+            ),
+        child: GetBuilder(
+          init: _outgoingCallController,
+          global: false,
+          dispose: (GetBuilderState<CometChatOutgoingCallController> state) =>
+              state.controller?.onClose(),
+          builder: (CometChatOutgoingCallController viewModel) {
+            viewModel.context = context;
+            return CometChatCard(
+              title: user?.name,
+              avatarName: user?.name,
+              avatarUrl: user?.avatar,
+              avatarStyle: avatarStyle,
+              subtitle: subtitle ?? Translations.of(context).calling.toLowerCase(),
+              cardStyle: CardStyle(
+                background: cardStyle?.background,
+                border: cardStyle?.border,
+                gradient: cardStyle?.gradient,
+                borderRadius: cardStyle?.borderRadius,
+                height: cardStyle?.height,
+                width: cardStyle?.width,
+                titleStyle: cardStyle?.titleStyle ??
+                    TextStyle(
+                      color: _theme.palette.getAccent(),
+                        fontSize: 28,
+                        fontWeight: _theme.typography.heading.fontWeight),
+                subtitleStyle: cardStyle?.subtitleStyle ??
+                    TextStyle(
+                        fontSize: _theme.typography.subtitle1.fontSize,
+                        fontWeight: _theme.typography.subtitle1.fontWeight,
+                        color: _theme.palette.getAccent600()),
               ),
-          child: GetBuilder(
-            init: _outgoingCallController,
-            global: false,
-            dispose: (GetBuilderState<CometChatOutgoingCallController> state) =>
-                state.controller?.onClose(),
-            builder: (CometChatOutgoingCallController viewModel) {
-              viewModel.context = context;
-              return CometChatCard(
-                title: user?.name,
-                avatarName: user?.name,
-                avatarUrl: user?.avatar,
-                avatarStyle: avatarStyle,
-                subtitle: subtitle ?? Translations.of(context).calling.toLowerCase(),
-                cardStyle: CardStyle(
-                  background: cardStyle?.background,
-                  border: cardStyle?.border,
-                  gradient: cardStyle?.gradient,
-                  borderRadius: cardStyle?.borderRadius,
-                  height: cardStyle?.height,
-                  width: cardStyle?.width,
-                  titleStyle: cardStyle?.titleStyle ??
-                      TextStyle(
-                        color: _theme.palette.getAccent(),
-                          fontSize: 28,
-                          fontWeight: _theme.typography.heading.fontWeight),
-                  subtitleStyle: cardStyle?.subtitleStyle ??
-                      TextStyle(
-                          fontSize: _theme.typography.subtitle1.fontSize,
-                          fontWeight: _theme.typography.subtitle1.fontWeight,
-                          color: _theme.palette.getAccent600()),
-                ),
-                bottomView: CometChatButton(
-                  iconUrl: declineButtonIconUrl ?? AssetConstants.close,
-                  iconPackage:
-                      declineButtonIconUrlPackage ?? UIConstants.packageName,
-                  onTap: viewModel.rejectCall,
-                  text: declineButtonText ??
-                      Translations.of(context).cancel.toLowerCase(),
-                  hoverText: Translations.of(context).cancel,
-                  buttonStyle: kit.ButtonStyle(
-                      background: buttonStyle?.background ??
-                          _theme.palette.getError(),
-                      iconTint:
-                          buttonStyle?.iconTint ?? _theme.palette.backGroundColor.light,
-                      iconBorder: buttonStyle?.iconBorder,
-                      iconBorderRadius: buttonStyle?.iconBorderRadius,
-                      iconBackground: buttonStyle?.iconBackground ?? Colors.transparent,
-                      height: buttonStyle?.height ?? 48,
-                      width: buttonStyle?.width ?? 48,
-                      iconHeight: buttonStyle?.iconHeight ?? 24,
-                      iconWidth: buttonStyle?.iconWidth ?? 24,
-                      border: buttonStyle?.border,
-                      gradient: buttonStyle?.gradient,
-                      borderRadius: buttonStyle?.borderRadius,
-                      textStyle: outgoingCallStyle?.declineButtonTextStyle ?? buttonStyle?.textStyle ??
-                          TextStyle(
-                              fontSize: _theme.typography.caption1.fontSize,
-                              fontWeight: _theme.typography.subtitle2.fontWeight,
-                              color: _theme.palette.getAccent600())),
-                ),
-              );
-            },
-          ),
-        )),
-      ),
+              bottomView: CometChatButton(
+                iconUrl: declineButtonIconUrl ?? AssetConstants.close,
+                iconPackage:
+                    declineButtonIconUrlPackage ?? UIConstants.packageName,
+                onTap: viewModel.rejectCall,
+                text: declineButtonText ??
+                    Translations.of(context).cancel.toLowerCase(),
+                hoverText: Translations.of(context).cancel,
+                buttonStyle: kit.ButtonStyle(
+                    background: buttonStyle?.background ??
+                        _theme.palette.getError(),
+                    iconTint:
+                        buttonStyle?.iconTint ?? _theme.palette.backGroundColor.light,
+                    iconBorder: buttonStyle?.iconBorder,
+                    iconBorderRadius: buttonStyle?.iconBorderRadius,
+                    iconBackground: buttonStyle?.iconBackground ?? Colors.transparent,
+                    height: buttonStyle?.height ?? 48,
+                    width: buttonStyle?.width ?? 48,
+                    iconHeight: buttonStyle?.iconHeight ?? 24,
+                    iconWidth: buttonStyle?.iconWidth ?? 24,
+                    border: buttonStyle?.border,
+                    gradient: buttonStyle?.gradient,
+                    borderRadius: buttonStyle?.borderRadius,
+                    textStyle: outgoingCallStyle?.declineButtonTextStyle ?? buttonStyle?.textStyle ??
+                        TextStyle(
+                            fontSize: _theme.typography.caption1.fontSize,
+                            fontWeight: _theme.typography.subtitle2.fontWeight,
+                            color: _theme.palette.getAccent600())),
+              ),
+            );
+          },
+        ),
+      )),
     );
   }
 }
