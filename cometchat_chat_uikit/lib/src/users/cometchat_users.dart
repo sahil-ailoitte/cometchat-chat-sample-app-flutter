@@ -452,7 +452,7 @@ class _CometChatUsersState extends State<CometChatUsers> {
 
   Widget _getList(BuildContext context, CometChatTheme _theme) {
     return GetBuilder(
-      // init: usersController,
+      init: usersController,
       tag: tag,
       builder: (CometChatUsersController value) {
         if (value.hasError == true) {
