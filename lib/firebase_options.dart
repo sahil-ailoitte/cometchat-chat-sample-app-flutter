@@ -50,21 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDyoxfHIsIIgqldbst7hKUGo2BkeYpnJuw',
-    appId: '1:612231640845:android:1b2c6e9402885645686244',
-    messagingSenderId: '612231640845',
-    projectId: 'chat-app-84c2c',
-    databaseURL: 'https://chat-app-84c2c-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'chat-app-84c2c.appspot.com',
+    apiKey: 'AIzaSyC1DiqlnNZOX-Wl2oraRS41kvkboDLrdUo',
+    appId: '1:880335528013:android:2da4aac5bec46aa5b6fc04',
+    messagingSenderId: '880335528013',
+    projectId: 'sheikhani-communication-app',
+    storageBucket: 'sheikhani-communication-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB3F6Nq9Uj9lXCAVwZPCxMdYtRiaUtGVcg',
-    appId: '1:612231640845:ios:49d1e2822164e218686244',
-    messagingSenderId: '612231640845',
-    projectId: 'chat-app-84c2c',
-    databaseURL: 'https://chat-app-84c2c-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'chat-app-84c2c.appspot.com',
+    apiKey: 'AIzaSyD-usL50ucmQR7FYt4bul9HXiqqhUQHFTU',
+    appId: '1:880335528013:ios:ffa2a48b26bd3966b6fc04',
+    messagingSenderId: '880335528013',
+    projectId: 'sheikhani-communication-app',
+    storageBucket: 'sheikhani-communication-app.appspot.com',
     iosBundleId: 'com.sheikhani.communication',
   );
 }

@@ -1,33 +1,13 @@
 {
   "project_info": {
-    "project_number": "612231640845",
-    "firebase_url": "https://chat-app-84c2c-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "chat-app-84c2c",
-    "storage_bucket": "chat-app-84c2c.appspot.com"
+    "project_number": "880335528013",
+    "project_id": "sheikhani-communication-app",
+    "storage_bucket": "sheikhani-communication-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:612231640845:android:4d01712bb6324062686244",
-        "android_client_info": {
-          "package_name": "com.cometchat.cometchat_flutter_sample_app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDyoxfHIsIIgqldbst7hKUGo2BkeYpnJuw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:612231640845:android:1b2c6e9402885645686244",
+        "mobilesdk_app_id": "1:880335528013:android:2da4aac5bec46aa5b6fc04",
         "android_client_info": {
           "package_name": "com.sheikhani.communication"
         }
@@ -35,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDyoxfHIsIIgqldbst7hKUGo2BkeYpnJuw"
+          "current_key": "AIzaSyC1DiqlnNZOX-Wl2oraRS41kvkboDLrdUo"
         }
       ],
       "services": {
